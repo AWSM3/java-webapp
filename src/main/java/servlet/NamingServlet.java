@@ -10,18 +10,22 @@ import java.io.IOException;
 
 @WebServlet("/naming")
 public class NamingServlet extends HttpServlet {
+    public static final String TEXT_PLAIN = "text/plain";
     public static final String PARAMETER_FIRSTNAME = "firstname";
     public static final String PARAMETER_MIDDLENAME = "middlename";
     public static final String PARAMETER_LASTNAME = "lastname";
+    public static final String HELLO_STRING = "Hello, %s %s %s!";
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         switch (req.getParameter("type")) {
             case PARAMETER_FIRSTNAME:
-                saveAndForward(req, resp, PARAMETER_FIRSTNAME, PARAMETER_MIDDLENAME);
+                save(req, PARAMETER_FIRSTNAME);
+                getServletContext().getRequestDispatcher("/middlename.jsp").forward(req, resp);
                 break;
             case PARAMETER_MIDDLENAME:
-                saveAndForward(req, resp, PARAMETER_MIDDLENAME, PARAMETER_LASTNAME);
+                save(req, PARAMETER_MIDDLENAME);
+                getServletContext().getRequestDispatcher("/lastname.jsp").forward(req, resp);
                 break;
             case PARAMETER_LASTNAME:
                 save(req, PARAMETER_LASTNAME);
@@ -36,18 +40,13 @@ public class NamingServlet extends HttpServlet {
         req.getSession().setAttribute(parameter, req.getParameter("value"));
     }
 
-    private void saveAndForward(HttpServletRequest req, HttpServletResponse resp, String parameter, String to) throws ServletException, IOException {
-        save(req, parameter);
-        getServletContext().getRequestDispatcher(String.format("/%s.jsp", to)).forward(req, resp);
-    }
-
     private void writeFullname(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         HttpSession session = req.getSession();
 
-        resp.setContentType("text/plain");
+        resp.setContentType(TEXT_PLAIN);
         resp.getWriter().write(
                 String.format(
-                        "Hello, %s %s %s!",
+                        HELLO_STRING,
                         session.getAttribute(PARAMETER_FIRSTNAME),
                         session.getAttribute(PARAMETER_MIDDLENAME),
                         session.getAttribute(PARAMETER_LASTNAME)
