@@ -4,4 +4,13 @@
 
 <web-app>
   <display-name>"Hello" Archetype Created Web Application</display-name>
+
+  <servlet>
+    <servlet-name>HelloXml</servlet-name>
+    <servlet-class>com.lanit.webapp.servlet.HelloXmlServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HelloXml</servlet-name>
+    <url-pattern>/hello-xml</url-pattern>
+  </servlet-mapping>
 </web-app>
