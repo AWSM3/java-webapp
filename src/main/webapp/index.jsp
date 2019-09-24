@@ -12,8 +12,8 @@
     <div class="form-group">
         <input type="text" class="form-control" name="name" placeholder="Your name">
     </div>
-    <button type="submit" class="btn btn-primary" formaction="/WebApp/hello-annotation">AnnotationServlet</button>
-    <button type="submit" class="btn btn-success" formaction="/WebApp/hello-xml">XmlServlet</button>
+    <button type="submit" class="btn btn-primary" formaction="hello-annotation">AnnotationServlet</button>
+    <button type="submit" class="btn btn-success" formaction="hello-xml">XmlServlet</button>
 </form>
 
 </body>
