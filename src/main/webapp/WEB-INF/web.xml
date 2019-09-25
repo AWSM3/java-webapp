@@ -5,6 +5,8 @@
 <web-app>
   <display-name>"Hello" Archetype Created Web Application</display-name>
 
+
+  <!-- Servlets -->
   <servlet>
     <servlet-name>HelloXml</servlet-name>
     <servlet-class>com.lanit.webapp.servlet.HelloXmlServlet</servlet-class>
@@ -13,4 +15,28 @@
     <servlet-name>HelloXml</servlet-name>
     <url-pattern>/hello-xml</url-pattern>
   </servlet-mapping>
+
+  <!-- Пример конфигурации с помощью XML -->
+
+  <!-- Listeners -->
+  <!--
+  <listener>
+    <listener-class>com.lanit.webapp.listener.SessionListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>com.lanit.webapp.listener.ContextListener</listener-class>
+  </listener>
+  -->
+
+  <!-- Filters -->
+  <!--
+  <filter>
+    <filter-name>RequestTrack</filter-name>
+    <filter-class>com.lanit.webapp.filter.RequestTrack</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>RequestTrack</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  -->
 </web-app>

@@ -33,6 +33,8 @@ public class NamingServlet extends HttpServlet {
                 break;
             case PARAMETER_LASTNAME:
                 writeFullname(req, resp);
+                // уничтожим сессию для тестирования слушателя com.lanit.webapp.listener.SessionListener
+                req.getSession().invalidate();
                 break;
             default:
                 throw new UnsupportedOperationException();
