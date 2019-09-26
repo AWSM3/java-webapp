@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page isELIgnored="false" %>
+<%@ page import="com.lanit.webapp.i18n.Locales" %>
 
 <fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="messages"/>
@@ -23,8 +24,8 @@
             <fmt:message key="label.language"/>
         </button>
         <div class="dropdown-menu">
-            <a class="dropdown-item" href="?lang=en"><fmt:message key="label.lang.english"/></a>
-            <a class="dropdown-item" href="?lang=ru"><fmt:message key="label.lang.russian"/></a>
+            <a class="dropdown-item" href="?lang=<%= Locales.en.name() %>"><fmt:message key="label.lang.english"/></a>
+            <a class="dropdown-item" href="?lang=<%= Locales.ru.name() %>"><fmt:message key="label.lang.russian"/></a>
         </div>
     </div>
     <hr>

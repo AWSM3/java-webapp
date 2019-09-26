@@ -1,6 +1,7 @@
 package com.lanit.webapp.filter;
 
 import com.lanit.webapp.http.ContentCaptureResponse;
+import com.lanit.webapp.i18n.Translator;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -33,7 +34,7 @@ public class RequestTrack implements Filter {
 
         this.logger.info(
                 String.format(
-                        "\nRequest:\n\t- Method: %s\n\t- URL: %s\n\t- Parameters: %s\n\t- Status: %s\n\t- Body size: %s bytes.\n",
+                        getTranslator(httpRequest).translate("text.request-track-message"),
                         httpRequest.getMethod(),
                         httpRequest.getRequestURI(),
                         params,
@@ -47,4 +48,8 @@ public class RequestTrack implements Filter {
 
     @Override
     public void destroy() {}
+
+    public Translator getTranslator(HttpServletRequest httpRequest) {
+        return Translator.getInstance((String)httpRequest.getSession().getAttribute(I18nFilter.LANG_PARAMETER));
+    }
 }
