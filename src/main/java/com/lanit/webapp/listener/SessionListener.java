@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 @WebListener
 public class SessionListener implements HttpSessionListener {
-    private final Logger logger = Logger.getLogger("session.logger");
+    private final Logger logger = Logger.getLogger(getClass().getSimpleName());
 
     @Override
     public void sessionCreated(HttpSessionEvent httpSessionEvent) {
