@@ -8,10 +8,12 @@ import java.io.IOException;
 
 public class HelloServlet extends HttpServlet {
     public static final String NAME_PARAMETER = "name";
+    public static final String CLASS_PARAMETER = "class";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/plain");
-        response.getWriter().write(String.format("Hello, %s! (%s)", request.getParameter(NAME_PARAMETER), getClass().toString()));
+        request.setAttribute(CLASS_PARAMETER, getClass().getSimpleName());
+        request.setAttribute(NAME_PARAMETER, request.getParameter(NAME_PARAMETER));
+        getServletContext().getRequestDispatcher("/greet.jsp").forward(request, response);
     }
 }
